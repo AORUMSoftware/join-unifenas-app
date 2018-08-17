@@ -8,23 +8,49 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import AgendaScreen from './components/AgendaScreen'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import FallingDrawer from 'react-native-falling-drawer'
+import MAIcon from 'react-native-vector-icons/MaterialIcons'
 
-type Props = {};
-export default class App extends Component<Props> {
+
+
+const renderScreen = (text) => <View vcenter hcenter><Text>{text}</Text></View>
+
+const getScreen = (key, name, color, titleColor, hamburgerColor, iconName) => ({
+  key,
+  name,
+  color,
+  titleColor,
+  hamburgerColor,
+  render: () => renderScreen(name),
+  customHeader: () => (
+    <View row vcenter hcenter mdpt>
+      <MAIcon name={iconName} size={30} color={titleColor} />
+      <View mdpl />
+      <Text style={{ color: titleColor, fontSize: 18 }}>{name}</Text>
+    </View>
+  )
+})
+
+const SCREENS = [
+  getScreen("help", "Help", "#345979", "#fff", "#fff", "help"),
+  getScreen("settings", "Settings", "#695876", "#fff", "#fff", "settings"),
+  getScreen("history", "History", "#BA697F", "#fff", "#fff", "history"),
+  getScreen("map", "Map", "#EE6D7C", "#fff", "#fff", "map"),
+  getScreen("profile", "Profile", "#F7AE90", "#fff", "#fff", "person"),
+]
+
+
+
+export default class App extends Component {
+  
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <View>
+        <FallingDrawer screens={SCREENS}/>
       </View>
+      // <AgendaScreen/>
     );
   }
 }
