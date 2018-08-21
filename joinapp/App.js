@@ -1,75 +1,52 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import AgendaScreen from './components/AgendaScreen'
-
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import FallingDrawer from 'react-native-falling-drawer'
-import MAIcon from 'react-native-vector-icons/MaterialIcons'
+import FAIcon from 'react-native-vector-icons/FontAwesome5'
 
+// 
+import AgendaScreen from './components/screens/AgendaScreen'
 
+// 
+const styles = StyleSheet.create({ });
 
-const renderScreen = (text) => <View vcenter hcenter><Text>{text}</Text></View>
+//
+const getScreen = (key, name, color, titleColor, hamburgerColor, iconName, component) => 
+(
+  {
+    key,
+    name,
+    color,
+    titleColor,
+    hamburgerColor,
+    render: () => (<View style={{ flex: 1 }}>
+                    <View style={{height:50}}></View>
+                    {component()}
+                  </View>),
+    customHeader: () => (
+      <View row vcenter hcenter mdpt style={{flex:1,justifyContent: 'center',alignItems:'center'}}>
+        <Text vcenter hcenter style={{color: titleColor, fontSize: 18}}>
+          <FAIcon name={iconName} size={20} color={titleColor} /> {name}
+        </Text>
+      </View>
+    )
+  }
+)
 
-const getScreen = (key, name, color, titleColor, hamburgerColor, iconName) => ({
-  key,
-  name,
-  color,
-  titleColor,
-  hamburgerColor,
-  render: () => renderScreen(name),
-  customHeader: () => (
-    <View row vcenter hcenter mdpt>
-      <MAIcon name={iconName} size={30} color={titleColor} />
-      <View mdpl />
-      <Text style={{ color: titleColor, fontSize: 18 }}>{name}</Text>
-    </View>
-  )
-})
-
+// 
 const SCREENS = [
-  getScreen("help", "Help", "#345979", "#fff", "#fff", "help"),
-  getScreen("settings", "Settings", "#695876", "#fff", "#fff", "settings"),
-  getScreen("history", "History", "#BA697F", "#fff", "#fff", "history"),
-  getScreen("map", "Map", "#EE6D7C", "#fff", "#fff", "map"),
-  getScreen("profile", "Profile", "#F7AE90", "#fff", "#fff", "person"),
+  getScreen("map", "Map", "#F7AE90", "#fff", "#fff", "user-alt", () => <Text>Map</Text>),
+  getScreen("help", "Ajuda", "#345979", "#fff", "#fff", "question-circle", () => <Text>Help</Text>),
+  getScreen("settings", "Settings", "#695876", "#fff", "#fff", "wrench", () => <Text>Settings</Text>),
+  getScreen("history", "History", "#BA697F", "#fff", "#fff", "history", () => <Text>History</Text>),
+  getScreen("calendar", "Calendário", "#EE6D7C", "#fff", "#fff", "calendar-alt", () => <AgendaScreen style={{top:50}} />),
 ]
 
-
-
+// 
 export default class App extends Component {
   
   render() {
     return (
-      <View>
-        <FallingDrawer screens={SCREENS}/>
-      </View>
-      // <AgendaScreen/>
+      <FallingDrawer screens={SCREENS}/>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

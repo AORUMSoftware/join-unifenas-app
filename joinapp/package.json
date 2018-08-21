@@ -7,15 +7,18 @@
     "test": "jest"
   },
   "dependencies": {
+    "babel-preset-react-native": "^2.1.0",
+    "npm": "^6.4.0",
     "react": "16.4.1",
-    "react-native": "0.56.0",
+    "react-native": "^0.55.4",
     "react-native-calendars": "^1.20.0",
     "react-native-falling-drawer": "^1.0.2",
     "react-native-vector-icons": "^5.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.47",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "23.4.2",
-    "babel-preset-react-native": "5.0.2",
     "jest": "23.5.0",
     "react-test-renderer": "16.4.1"
   },
