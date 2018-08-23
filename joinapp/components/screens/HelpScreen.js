@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 
-export default class Help extends Component {
+export default class HelpScreen extends Component {
   
 
   render() {

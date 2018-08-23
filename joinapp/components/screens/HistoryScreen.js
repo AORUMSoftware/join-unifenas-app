@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 
-export default class About extends Component {
+export default class HistoryScreen extends Component {
   
 
   render() {
     return (
       <View>
-          <Text>About</Text>
+          <Text>History</Text>
           <Text>screen</Text>
       </View>
     );

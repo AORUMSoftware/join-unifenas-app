@@ -4,10 +4,10 @@ import FallingDrawer from 'react-native-falling-drawer'
 import FAIcon from 'react-native-vector-icons/FontAwesome5'
 
 // 
-import About from './components/screens/About'
+import AboutScreen from './components/screens/AboutScreen'
 import AgendaScreen from './components/screens/AgendaScreen'
-import Help from './components/screens/Help'
-import History from './components/screens/History'
+import HelpScreen from './components/screens/HelpScreen'
+import HistoryScreen from './components/screens/HistoryScreen'
 
 //
 import SplashScreen from 'react-native-splash-screen'
@@ -41,10 +41,10 @@ const getScreen = (key, name, color, titleColor, hamburgerColor, iconName, compo
 
 // 
 const SCREENS = [
-  getScreen("help", "Ajuda", "#345979", "#fff", "#fff", "question-circle", () => <Help/>),
-  getScreen("history", "História", "#695876", "#fff", "#fff", "history", () => <History/>),
-  getScreen("about", "Sobre", "#BA697F", "#fff", "#fff", "mobile-alt", () => <About/>),
-  getScreen("calendar", "Calendário", "#EE6D7C", "#fff", "#fff", "calendar-alt", () => <AgendaScreen style={{top:50}} />),
+  getScreen("help", "Ajuda", "#345979", "#fff", "#fff", "question-circle", () => <HelpScreen/>),
+  getScreen("history", "História", "#695876", "#fff", "#fff", "history", () => <HistoryScreen/>),
+  getScreen("about", "Sobre", "#BA697F", "#fff", "#fff", "mobile-alt", () => <AboutScreen/>),
+  getScreen("calendar", "Calendário", "#EE6D7C", "#fff", "#fff", "calendar-alt", () => <AgendaScreen />),
 ]
 
 // 
@@ -56,12 +56,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <View>
-        <StatusBar 
-          // backgroundColor="#ffffff"
-          barStyle="light-content"
-        />
-        <FallingDrawer screens={SCREENS}/>
+      <View style={{ flex: 1 }}>
+        <StatusBar barStyle="light-content" /> 
+        <FallingDrawer screens={SCREENS}/> 
       </View>
     );
   }

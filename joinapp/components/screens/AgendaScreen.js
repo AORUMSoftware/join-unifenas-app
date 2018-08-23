@@ -2,17 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { Agenda } from 'react-native-calendars';
 
-import { LocaleConfig } from 'react-native-calendars';
-
-LocaleConfig.locales['br'] = {
-  monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-  monthNamesShort: ['Jan.','Fev.','Mar.','Abr.','Mai.','Jun.','Jul.','Ago','Sep.','Out.','Nov.','Dez.'],
-  dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
-  dayNamesShort: ['Dom.','Seg.','Ter.','Qua.','Qui.','Sex.','Sab.']
-};
-
-LocaleConfig.defaultLocale = 'br';
-
 export default class AgendaScreen extends Component {
   constructor(props) {
     super(props);
@@ -110,4 +99,3 @@ const styles = StyleSheet.create({
     paddingTop: 30
   }
 });
-
