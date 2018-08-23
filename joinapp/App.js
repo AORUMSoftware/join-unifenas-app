@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import FallingDrawer from 'react-native-falling-drawer'
 import FAIcon from 'react-native-vector-icons/FontAwesome5'
 
@@ -8,6 +8,9 @@ import About from './components/screens/About'
 import AgendaScreen from './components/screens/AgendaScreen'
 import Help from './components/screens/Help'
 import History from './components/screens/History'
+
+//
+import SplashScreen from 'react-native-splash-screen'
 
 
 // 
@@ -47,9 +50,19 @@ const SCREENS = [
 // 
 export default class App extends Component {
   
+  componentDidMount() {
+    SplashScreen.hide();
+  }
+
   render() {
     return (
-      <FallingDrawer screens={SCREENS}/>
+      <View>
+        <StatusBar 
+          // backgroundColor="#ffffff"
+          barStyle="light-content"
+        />
+        <FallingDrawer screens={SCREENS}/>
+      </View>
     );
   }
 }
