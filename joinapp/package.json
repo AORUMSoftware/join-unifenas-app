@@ -13,6 +13,7 @@
     "react-native": "^0.55.4",
     "react-native-calendars": "^1.20.0",
     "react-native-falling-drawer": "^1.0.2",
+    "react-native-responsive-image": "^2.3.1",
     "react-native-splash-screen": "^3.0.6",
     "react-native-vector-icons": "^5.0.0"
   },

@@ -7,7 +7,7 @@ import FAIcon from 'react-native-vector-icons/FontAwesome5'
 import AboutScreen from './components/screens/AboutScreen'
 import AgendaScreen from './components/screens/AgendaScreen'
 import HelpScreen from './components/screens/HelpScreen'
-import HistoryScreen from './components/screens/HistoryScreen'
+import ThemeScreen from './components/screens/ThemeScreen'
 
 //
 import SplashScreen from 'react-native-splash-screen'
@@ -41,10 +41,10 @@ const getScreen = (key, name, color, titleColor, hamburgerColor, iconName, compo
 
 // 
 const SCREENS = [
-  getScreen("help", "Ajuda", "#345979", "#fff", "#fff", "question-circle", () => <HelpScreen/>),
-  getScreen("history", "História", "#695876", "#fff", "#fff", "history", () => <HistoryScreen/>),
-  getScreen("about", "Sobre", "#BA697F", "#fff", "#fff", "mobile-alt", () => <AboutScreen/>),
-  getScreen("calendar", "Calendário", "#EE6D7C", "#fff", "#fff", "calendar-alt", () => <AgendaScreen />),
+  getScreen("theme", "Tema", "#046F8D", "#fff", "#fff", "book", () => <ThemeScreen/>),
+  getScreen("calendar", "Calendário", "#0E2830", "#fff", "#fff", "calendar-alt", () => <AgendaScreen />),
+  getScreen("help", "Ajuda", "#024153", "#fff", "#fff", "question-circle", () => <HelpScreen/>),
+  getScreen("about", "Sobre", "#68BBD2", "#fff", "#fff", "lightbulb", () => <AboutScreen/>),
 ]
 
 // 
