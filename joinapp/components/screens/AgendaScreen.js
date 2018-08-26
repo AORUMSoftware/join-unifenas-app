@@ -103,6 +103,18 @@ export default class AgendaScreen extends Component {
     };
   }
 
+  componentWillMount() {
+
+    fetch("http://192.168.1.5:3003/events/agenda")
+      .then((res) => res.json())
+      .then((resJson) => api = resJson )
+      .catch((error) => 
+      {
+        console.error(error);
+      })
+
+  }
+
   render() {
     return (
       <Agenda
