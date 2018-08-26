@@ -41,8 +41,8 @@ const getScreen = (key, name, color, titleColor, hamburgerColor, iconName, compo
 
 // 
 const SCREENS = [
-  getScreen("theme", "Tema", "#046F8D", "#fff", "#fff", "book", () => <ThemeScreen/>),
   getScreen("calendar", "Calendário", "#0E2830", "#fff", "#fff", "calendar-alt", () => <AgendaScreen />),
+  getScreen("theme", "Tema", "#046F8D", "#fff", "#fff", "book", () => <ThemeScreen/>),
   getScreen("help", "Ajuda", "#024153", "#fff", "#fff", "question-circle", () => <HelpScreen/>),
   getScreen("about", "Sobre", "#68BBD2", "#fff", "#fff", "lightbulb", () => <AboutScreen/>),
 ]
