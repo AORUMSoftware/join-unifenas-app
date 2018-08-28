@@ -5,7 +5,7 @@ import { If } from '../utils/if'
  
 let api = 
 { 
-  today: "2018-09-18", 
+  today: "2018-09-17", 
   data: [
     { 
       _id: "",
@@ -120,7 +120,7 @@ export default class AgendaScreen extends Component {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected={api.today}
+        selected="2018-09-17"//{api.today}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
