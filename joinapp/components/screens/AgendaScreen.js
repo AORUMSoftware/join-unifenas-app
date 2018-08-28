@@ -101,10 +101,7 @@ export default class AgendaScreen extends Component {
     this.state = {
       items: {}
     };
-  }
-
-  componentWillMount() {
-
+    
     fetch("http://api.join2018.xyz:9090/events/agenda")
       .then((res) => res.json())
       .then((resJson) => api = resJson )
@@ -115,12 +112,32 @@ export default class AgendaScreen extends Component {
 
   }
 
+  componentWillMount() {
+
+  }
+
+  addDays(date, days) {
+      date.setDate(date.getDate() + days);
+      return date;
+  }
+
   render() {
+
+    let todayByApi = this.addDays(new Date(api.today), 1)
+    let todayJoin = this.addDays(new Date("2018-09-17"), 1)
+
+    console.log(api.today)
+    console.log(todayByApi)
+    console.log(todayJoin)
+
+    if (todayJoin < todayByApi)
+      todayJoin = todayByApi
+
     return (
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected="2018-09-17"//{api.today}
+        selected={todayJoin}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
