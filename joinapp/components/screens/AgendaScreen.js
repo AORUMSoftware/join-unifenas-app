@@ -1,99 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Agenda } from 'react-native-calendars';
-import { If } from '../utils/if'
  
-let api = 
-{ 
-  today: "2018-09-17", 
-  data: [
-    { 
-      _id: "",
-      day: "2018-09-17", 
-      content: [ 
-        {  
-          schedule: "13h30 às 17h30",
-          label: "Minicurso 1",
-          title: "Desenvolvendo aplicações Web - Mobile com ReactJS",
-          qualification: "Instrutores",
-          minister: "Acadêmicos João Vitor Regis Falcão e Vinícius de Ávila Moreira",
-          ministerDescription: "",
-          where: "Laboratório de Computação - S. 2003" 
-        }, 
-        { 
-          schedule: "13h30 às 17h",
-          label: "Visitas Técnicas – Unifi e Sinterama",
-          title: "",
-          qualification: "Organizador",
-          minister: "Prof. Erivelton Antônio dos Santos",
-          ministerDescription: "",
-          where: ""
-        }, 
-        { 
-          schedule: "19h",
-          label: "Palestra",
-          title: "Mobile Meets BigData",
-          qualification: "Palestrante",
-          minister: "Jorge Silveira",
-          ministerDescription: "Bacharel em Ciência da Computação – UNIFENAS, MBA - Arquitetura de Soluções e Tecnologia da Informação – FIAP, Gerente de tecnologia da informação na Hands Mobile Advertising",
-          where: ""
-        }, 
-        { 
-          schedule: "20h30",
-          label: "Palestra",
-          title: "Da startup ao sucesso: quando, como e por onde devo começar?",
-          qualification: "Palestrante",
-          minister: "Uirá Pinheiro Soares",
-          ministerDescription: "Gerente da NidusTec, Graduado em Administração Pública e Economia pela Unifal-MG, MBA em Gestão de Negócios pela USP/Esalq",
-          where: ""
-        }, 
-      ] 
-    },
-    
-    { day: "2018-09-18", 
-      content: [ 
-        {  
-          schedule: "",
-          label: "",
-          title: "",
-          qualification: "",
-          minister: "",
-          ministerDescription: "",
-          where: "" 
-        },
-      ] 
-    },
-    
-    { day: "2018-09-19", 
-      content: [ 
-        {  
-          schedule: "",
-          label: "",
-          title: "",
-          qualification: "",
-          minister: "",
-          ministerDescription: "",
-          where: "" 
-        },
-      ] 
-    },
-
-    { day: "2018-09-20", 
-      content: [ 
-        {  
-          schedule: "21h",
-          label: "Pizzada",
-          title: "Encerramento da JOIN 2018",
-          qualification: "",
-          minister: "",
-          ministerDescription: "",
-          where: "Na pizzaria, uai." 
-        },
-      ] 
-    },
-  ] 
-}
-
 export default class AgendaScreen extends Component {
 
   constructor(props) {
@@ -101,18 +9,17 @@ export default class AgendaScreen extends Component {
     this.state = {
       items: {}
     };
-    
+  }
+
+  componentWillMount() {
+
     fetch("http://api.join2018.xyz:9090/events/agenda")
       .then((res) => res.json())
-      .then((resJson) => api = resJson )
+      .then((resJson) => this.setState({ ...this.state, items: resJson }))
       .catch((error) => 
       {
         console.error(error);
       })
-
-  }
-
-  componentWillMount() {
 
   }
 
@@ -124,14 +31,16 @@ export default class AgendaScreen extends Component {
   render() {
 
     let todayByApi = this.addDays(new Date(api.today), 1)
-    let todayJoin = this.addDays(new Date("2018-09-17"), 1)
+    let minDateJoin = this.addDays(new Date("2018-09-17"), 1)
+    let maxDateJoin = this.addDays(new Date("2018-09-20"), 1)
+    let today = Date.now()
 
-    console.log(api.today)
-    console.log(todayByApi)
-    console.log(todayJoin)
-
-    if (todayJoin < todayByApi)
-      todayJoin = todayByApi
+    if (minDateJoin < todayByApi)
+      today = todayByApi
+    else if (maxDateJoin < todayByApi)
+      today = maxDateJoin
+    else
+      today = minDateJoin
 
     return (
       <Agenda
@@ -155,7 +64,7 @@ export default class AgendaScreen extends Component {
   loadItems(day) {
     setTimeout(() => {
 
-      api.data.forEach((item) => {
+      this.state.items.data.forEach((item) => {
 
         this.state.items[item.day] = [];
 
