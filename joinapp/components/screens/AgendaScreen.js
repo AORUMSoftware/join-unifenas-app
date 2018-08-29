@@ -7,7 +7,8 @@ export default class AgendaScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: {}
+      items: {},
+      api: {}
     };
   }
 
@@ -15,7 +16,7 @@ export default class AgendaScreen extends Component {
 
     fetch("http://api.join2018.xyz:9090/events/agenda")
       .then((res) => res.json())
-      .then((resJson) => this.setState({ ...this.state, items: resJson }))
+      .then((resJson) => this.setState({ ...this.state, api: resJson }))
       .catch((error) => 
       {
         console.error(error);
@@ -30,7 +31,7 @@ export default class AgendaScreen extends Component {
 
   render() {
 
-    let todayByApi = this.addDays(new Date(api.today), 1)
+    let todayByApi = this.addDays(new Date(this.state.api.today), 1)
     let minDateJoin = this.addDays(new Date("2018-09-17"), 1)
     let maxDateJoin = this.addDays(new Date("2018-09-20"), 1)
     let today = Date.now()
@@ -46,7 +47,7 @@ export default class AgendaScreen extends Component {
       <Agenda
         items={this.state.items}
         loadItemsForMonth={this.loadItems.bind(this)}
-        selected={todayJoin}
+        selected={today}
         renderItem={this.renderItem.bind(this)}
         renderEmptyDate={this.renderEmptyDate.bind(this)}
         rowHasChanged={this.rowHasChanged.bind(this)}
@@ -64,7 +65,7 @@ export default class AgendaScreen extends Component {
   loadItems(day) {
     setTimeout(() => {
 
-      this.state.items.data.forEach((item) => {
+      this.state.api.data.forEach((item) => {
 
         this.state.items[item.day] = [];
 
@@ -82,7 +83,7 @@ export default class AgendaScreen extends Component {
         items: newItems
       });
 
-    }, 1000);
+    }, 2000);
 
   }
 
