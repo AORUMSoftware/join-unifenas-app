@@ -16,7 +16,7 @@ export default class AgendaScreen extends Component {
     super(props);
     this.state = {
       items: {},
-      api: {}
+      api: { today: "2018-09-17", data: [] }
     };
   }
 
