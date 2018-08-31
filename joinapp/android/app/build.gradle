@@ -103,8 +103,8 @@ android {
         applicationId "com.joinapp"
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 1
-        versionName "v2018.0.1-BETA"
+        versionCode 2
+        versionName "v2018.0.2-BETA"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
