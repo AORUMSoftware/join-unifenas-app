@@ -6,8 +6,9 @@ import FAIcon from 'react-native-vector-icons/FontAwesome5'
 // 
 import AboutScreen from './components/screens/AboutScreen'
 import AgendaScreen from './components/screens/AgendaScreen'
-import HelpScreen from './components/screens/HelpScreen'
+import SponsorScreen from './components/screens/SponsorScreen'
 import ThemeScreen from './components/screens/ThemeScreen'
+import SpeakerScreen from './components/screens/SpeakerScreen'
 
 //
 import SplashScreen from 'react-native-splash-screen'
@@ -31,8 +32,8 @@ const getScreen = (key, name, color, titleColor, hamburgerColor, iconName, compo
                   </View>),
     customHeader: () => (
       <View row vcenter hcenter mdpt style={{flex:1,justifyContent: 'center',alignItems:'center'}}>
-        <Text vcenter hcenter style={{color: titleColor, fontSize: 18}}>
-          <FAIcon name={iconName} size={20} color={titleColor} /> {name}
+        <Text vcenter hcenter style={{color: titleColor, fontSize: 14}}>
+          <FAIcon name={iconName} size={18} color={titleColor} /> {name}
         </Text>
       </View>
     )
@@ -41,12 +42,13 @@ const getScreen = (key, name, color, titleColor, hamburgerColor, iconName, compo
 
 // 
 const SCREENS = [
-  getScreen("calendar", "Calendário", "#0E2830", "#fff", "#fff", "calendar-alt", () => <AgendaScreen />),
-  getScreen("help", "Ajuda", "#024153", "#fff", "#fff", "question-circle", () => <HelpScreen/>),
-  getScreen("theme", "Tema", "#046F8D", "#fff", "#fff", "book", () => <ThemeScreen/>),
-  getScreen("about", "Sobre", "#68BBD2", "#fff", "#fff", "lightbulb", () => <AboutScreen/>),
+  getScreen("calendar", "Calendário", "#08314E", "#fff", "#fff", "calendar-alt", () => <AgendaScreen />),
+  getScreen("sponsor", "Patrocinadores", "#063E65", "#fff", "#fff", "user-tie", () => <SponsorScreen/>),
+  getScreen("speaker", "Conteúdo", "#065C98", "#fff", "#fff", "book-reader", () => <SpeakerScreen/>),
+  getScreen("theme", "Tema", "#0A72BB", "#fff", "#fff", "book", () => <ThemeScreen/>),
+  getScreen("about", "Sobre", "#0E9BFF", "#fff", "#fff", "lightbulb", () => <AboutScreen/>),
 ]
-
+ 
 // 
 export default class App extends Component {
   

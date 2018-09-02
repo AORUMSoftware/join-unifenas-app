@@ -149,7 +149,7 @@ export default class AgendaScreen extends Component {
       var emptyObject = {
         isEvent: false
       }
-
+      
       this.state.items["2018-09-16"] = []
       this.state.items["2018-09-16"].push(emptyObject)
       
