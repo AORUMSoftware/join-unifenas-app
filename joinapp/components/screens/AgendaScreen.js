@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, NetInfo, ToastAndroid, Platform, AsyncStorage } from 'react-native';
 import { Agenda, LocaleConfig } from 'react-native-calendars';
 import FAIcon from 'react-native-vector-icons/FontAwesome5'
+import Data from './resources/agenda'
 
 LocaleConfig.locales['br'] = {
   monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
@@ -11,7 +12,7 @@ LocaleConfig.locales['br'] = {
 };
 
 LocaleConfig.defaultLocale = 'br';
- 
+
 export default class AgendaScreen extends Component {
 
   constructor(props) {
@@ -50,40 +51,48 @@ export default class AgendaScreen extends Component {
     
     this._retrieveData().then((result) => { 
 
-      if (result)
-        this.setState({ api: JSON.parse(result) }) 
+        if (!result) {
+          this.setState({ api: Data })
+        }
+        else
+          this.setState({ api: JSON.parse(result) })
 
-      else 
-        this.setState({ api: { today: "2018-09-17", data: [] } }) 
-
-        NetInfo.getConnectionInfo()
-        .then((connectionInfo) => {
+        NetInfo.getConnectionInfo().then((connectionInfo) => {
     
           if (connectionInfo.type != "none" && connectionInfo.type != "unknown") {
     
-            fetch("http://api.join2018.xyz:9090/events/agenda")
-              .then((res) => res.json())
-              .then((resJson) => { 
+              try
+              {
+
+                fetch("http://api.join2018.xyz:9090/events/agenda")
+                .then((res) => res.json())
+                .then((resJson) => { 
+      
+                  this.setState({ api: resJson }) 
+                  this._storeData(JSON.stringify(resJson))
+      
+                })
+                .catch(function(error) {
+                  // reject(new Error(`Unable to retrieve events.\n${error.message}`));
+                })
+      
+              }
+              catch (error) {
+
+              }
+
+          }
+          else {
+            
+            if (Platform.OS === 'android')
+              ToastAndroid.show('Não foi possível conectar-se à internet para obter os dados atualizados do evento.', ToastAndroid.LONG);
+          }
+  
+      })
     
-                this.setState({ api: resJson }) 
-                this._storeData(JSON.stringify(resJson))
-    
-              })
-              .catch((error) => {
-    
-                console.error(error);
-    
-              })
-    
-            }
-            else {
-              
-              if (Platform.OS === 'android')
-                ToastAndroid.show('Não foi possível conectar-se à internet para obter os dados atualizados do evento.', ToastAndroid.LONG);
-            }
-    
-        })
-    
+    }).catch((error) => 
+    {
+      
     })
 
   }

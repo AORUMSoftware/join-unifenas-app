@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableHighlight, Linking } from 'react-native';
 import ResponsiveImage from 'react-native-responsive-image'
-
 
 export default class SponsorScreen extends Component {
 
@@ -27,42 +26,42 @@ export default class SponsorScreen extends Component {
         <Text style={title}>Apoio:</Text>
         <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
           
-          <View>
+          <TouchableHighlight onPress={ () => { Linking.openURL('http://www.iterative.com.br/')}} >
             <ResponsiveImage initWidth={"350"} initHeight={"200"} source={require('./img/sponsors/1.png')} />
-          </View>
+          </TouchableHighlight>
 
-          <View style={margin}>
+          <TouchableHighlight style={margin} onPress={ () => { Linking.openURL('http://www.mgnettecnologia.com/')}} >
             <ResponsiveImage initWidth={"350"} initHeight={"87"} source={require('./img/sponsors/2.png')} />
-          </View>
+          </TouchableHighlight>
 
-          <View style={margin}>
+          <TouchableHighlight style={margin} onPress={ () => { Linking.openURL('http://www.gaagrosolucoes.com.br/')}} >
             <ResponsiveImage initWidth={"350"} initHeight={"77"} source={require('./img/sponsors/3.png')} />
-          </View>
+          </TouchableHighlight>
           
-          <View style={margin}>
+          <TouchableHighlight style={margin} onPress={ () => { Linking.openURL('http://www.webnet.psi.br/')}} >
             <ResponsiveImage initWidth={"355"} initHeight={"105"} source={require('./img/sponsors/4.png')} />
-          </View>
+          </TouchableHighlight>
 
-          <View style={margin}>
+          <TouchableHighlight style={margin} onPress={ () => { Linking.openURL('http://www.ip3.com.br')}} >
             <ResponsiveImage initWidth={"350"} initHeight={"240"} source={require('./img/sponsors/5.png')} />
-          </View>
+          </TouchableHighlight>
 
-          <View style={margin}>
+          <TouchableHighlight style={margin} onPress={ () => { Linking.openURL('http://www.facebook.com/pages/Microsul-Informatica/31233795575033')}}>
             <ResponsiveImage initWidth={"350"} initHeight={"100"} source={require('./img/sponsors/6.png')} />
-          </View>
+          </TouchableHighlight>
           
-          <View style={margin}>
+          <TouchableHighlight style={margin} onPress={ () => { Linking.openURL('http://www.liteservice.com.br/')}} >
             <ResponsiveImage initWidth={"350"} initHeight={"70"} source={require('./img/sponsors/7.png')} />
-          </View>
+          </TouchableHighlight>
         
         </View>
 
         <Text style={title}>Realização:</Text>
         <View style={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}>
           
-          <View style={{ marginTop: 10, marginBottom: 30 }}>
+          <TouchableHighlight style={{ marginTop: 10, marginBottom: 30 }} onPress={ () => { Linking.openURL('http://www.unifenas.br/')}}>
             <ResponsiveImage initWidth={"250"} initHeight={"250"} source={require('./img/sponsors/8.jpg')} />
-          </View>
+          </TouchableHighlight>
           
         </View>
 
