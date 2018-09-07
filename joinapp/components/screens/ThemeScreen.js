@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   paragraph: {
     paddingTop: 10,
     paddingBottom: 10,
+    color: "black"
   },
 
   margin: {
@@ -56,7 +57,7 @@ export default class ThemeScreen extends Component {
       <ScrollView>
         
           <Text style={[s.title, s.paragraph]}>Tecnologias Disruptivas</Text>
-          <Text style={[s.subtitle, s.paragraph]}>A JOIN 2018 terá como tema as "Tecologias Disruptivas", veja o que o termo significa.</Text>
+          <Text style={[s.subtitle, s.paragraph]}>A JOIN 2018 terá como tema as "Tecnologias Disruptivas", veja o que o termo significa.</Text>
           
           <View style={{ flexGrow: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }}>
           
